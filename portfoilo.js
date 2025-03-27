@@ -100,5 +100,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
     projects.forEach(project => observer.observe(project));
 });
-
-/*------------------------------------------------------ PROJECT CARD ----------------------------------------------------*/
