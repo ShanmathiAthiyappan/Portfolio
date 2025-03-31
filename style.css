@@ -478,6 +478,11 @@ body {
 /*-----------------------------------------  Responsive behavior (MEDIA QUERY)  ---------------------------------------------*/
 
 @media screen and (max-width: 768px) {
+
+    *{
+        text-align: center;
+    }
+
     /* Hide the navbar links by default on small screens */
     .nav-links {
         display: none;
