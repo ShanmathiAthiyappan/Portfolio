@@ -466,6 +466,7 @@ body {
     font-size: 40px;
     padding: 5px 0px;
 }
+
 .mail a{
     text-decoration: none;
     color: #a9a7a7;
@@ -475,15 +476,6 @@ body {
 }
 
 /*-----------------------------------------  Responsive behavior (MEDIA QUERY)  ---------------------------------------------*/
-@media screen and (min-width: 768px) {
-    .projects {
-        justify-content: space-around;
-    }
-
-    .project {
-        width: 50%; /* Two cards in a row for medium screens */
-    }
-}
 
 @media screen and (max-width: 768px) {
     /* Hide the navbar links by default on small screens */
@@ -529,6 +521,24 @@ body {
 
     .projects{
         flex-direction: column;
+    }
+
+    .contact{
+        font-style: italic;
+    }
+
+    .mail,.location{
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .projects {
+        justify-content: space-around;
+    }
+
+    .project {
+        width: 50%; /* Two cards in a row for medium screens */
     }
 }
 
