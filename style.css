@@ -3,6 +3,7 @@
 /*----------------------------------------------BODY-----------------------------------------------------------  */
 *{
     user-select: none;
+    scroll-behavior: smooth;      
 }
 
 /* Reset and body styling */
@@ -119,6 +120,13 @@ body {
     color: #FFD700;
 }
 
+.nav-links a:active {
+    color: #ff6600; 
+    font-weight: bold;
+    border-bottom: 2px solid #ff6600;
+    transition: all 0.3s ease-in-out; /* Smooth effect */
+  }
+
 /* Download button styling */
 .download-button {
     background-color:transparent;
@@ -148,7 +156,6 @@ body {
 }
 
 /*----------------------------------------------HOME PAGE-----------------------------------------------------------  */
-
 
 /* Main layout container */
 .container {
@@ -390,7 +397,7 @@ body {
 
 .project{
     width: 350px;
-    height: 400px;
+    height: 500px !important;
     margin: 25px;
     padding: 7px;
     background: rgb(232, 232, 232);
@@ -465,6 +472,7 @@ body {
     color: #a9a7a7;
     font-size: 40px;
     padding: 5px 0px;
+    font-family: cursive;
 }
 
 .mail a{
@@ -513,6 +521,11 @@ body {
     /* Show the navbar links when the menu is toggled */
     .nav-links.show {
         display: flex;
+    }
+
+    /*Navbar*/
+    .navbar{       
+        min-width: 100%;
     }
 
     /* Hide the menu toggle icon when the navbar is visible */
