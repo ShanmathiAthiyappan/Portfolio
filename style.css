@@ -691,54 +691,126 @@ body {
 
 @media screen and (max-width: 768px) {
 
+    /* Keep navbar transparent and non-blocking */
+    .navbar {        
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        padding: 0;
+        pointer-events: none;
+    }
+
+    .menu-toggle, .nav-links {
+        pointer-events: auto;
+    }
+
+    /* Menu toggle button */
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+        color: #FFD700;
+        cursor: pointer;
+        position: fixed;
+        top: 15px;
+        left: 20px;
+        z-index: 1001;
+        background: rgba(18, 18, 18, 0.85);
+        border: 1px solid rgba(255, 215, 0, 0.35);
+        border-radius: 12px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Dropdown menu positioned cleanly under the toggle */
     .nav-links {
         display: none;
         flex-direction: column;
-        background: rgba(15, 15, 15, 0.95);
-        backdrop-filter: blur(12px);
+        align-items: stretch;
+        background: rgba(15, 15, 15, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         position: fixed;
-        top: 65px;
-        right: 20px;
-        width: 220px;
-        padding: 16px;
-        border: 1px solid #FFD700;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-        border-radius: 12px;
-    }
-
-    .nav-links a {
-        padding: 10px;
-        width: 100%;
-        text-align: center;
-    }
-
-    .menu-toggle {
-        display: block;
+        top: 70px;
+        left: 20px;
+        right: auto;
+        width: 250px;
+        padding: 14px 12px;
+        border: 1px solid rgba(255, 215, 0, 0.35);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), 0 0 15px rgba(255, 215, 0, 0.1);
+        border-radius: 16px;
+        gap: 6px;
+        z-index: 1000;
+        animation: menuFadeIn 0.25s ease-out;
     }
 
     .nav-links.show {
         display: flex;
     }
 
-    .navbar {        
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: none;
-    width: 100%;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    padding: 0;
-    pointer-events: none;
-}
+    @keyframes menuFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-.menu-toggle, .nav-links {
-    pointer-events: auto;
-}
+    /* Professional link item styling */
+    .nav-links a {
+        padding: 10px 16px;
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #e5e5e5;
+        transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+    }
 
+    .nav-links a:hover,
+    .nav-links a:active {
+        background: rgba(255, 215, 0, 0.08);
+        color: #FFD700;
+        padding-left: 20px;
+        border-bottom: none;
+    }
+
+    /* Resume action button */
+    .nav-links .download-button {
+        margin-top: 8px;
+        text-align: center;
+        justify-content: center;
+        padding: 10px 16px;
+        background: rgba(255, 215, 0, 0.12) !important;
+        border: 1.5px solid #FFD700 !important;
+        border-radius: 25px;
+        color: #FFD700 !important;
+        font-weight: 600;
+    }
+
+    .nav-links .download-button:hover,
+    .nav-links .download-button:active {
+        background: #FFD700 !important;
+        color: #000 !important;
+        padding-left: 16px;
+    }
+
+    /* Layout adjustments for mobile */
     .container {
         margin-top: 100px;
         gap: 30px;
@@ -756,11 +828,11 @@ body {
         font-size: 38px;
     }
 
-    .expertise{
+    .expertise {
         width: 95%;
     }
 
-    .projects{
+    .projects {
         flex-direction: column;
         align-items: center;
     }
@@ -771,12 +843,12 @@ body {
         min-height: auto;
     }
 
-    .mail, .location{
+    .mail, .location {
         font-size: 1rem;
     }
 
     #cursorEffect, #cursorDot {
-        display: none; /* Disable custom cursor on mobile touch devices */
+        display: none;
     }
 }
 
