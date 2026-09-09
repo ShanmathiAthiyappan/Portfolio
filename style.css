@@ -720,9 +720,24 @@ body {
         display: flex;
     }
 
-    .navbar{        
-        display: none;
-    }
+    .navbar {        
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    pointer-events: none;
+}
+
+.menu-toggle, .nav-links {
+    pointer-events: auto;
+}
 
     .container {
         margin-top: 100px;

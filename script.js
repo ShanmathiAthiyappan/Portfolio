@@ -83,31 +83,34 @@ interactables.forEach((el) => {
 
 /*------------------------------------------------------  NAVIGATION BAR  ----------------------------------------------------*/
 
-// Toggle the navigation menu visibility
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+/*------------------------------------------------------  NAVIGATION BAR  ----------------------------------------------------*/
 
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-    });
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-    // Hide the navbar when clicking outside
-    document.addEventListener('click', (event) => {
-        const isClickInsideNavbar = navLinks.contains(event.target) || menuToggle.contains(event.target);
-
-        if (!isClickInsideNavbar && navLinks.classList.contains('show')) {
-            navLinks.classList.remove('show');
-        }
-    });
-
-    // Close menu when clicking on any link
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('show');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevents immediate close from the document click listener
+            navLinks.classList.toggle('show');
         });
-    });
-}
+
+        // Hide navbar when clicking outside
+        document.addEventListener('click', (event) => {
+            const isClickInside = navLinks.contains(event.target) || menuToggle.contains(event.target);
+            if (!isClickInside && navLinks.classList.contains('show')) {
+                navLinks.classList.remove('show');
+            }
+        });
+
+        // Close menu when clicking on any link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+    }
+});
 
 /*------------------------------------------------------ PROJECT CARD ----------------------------------------------------*/
 
