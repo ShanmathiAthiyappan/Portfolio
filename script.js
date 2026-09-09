@@ -83,8 +83,6 @@ interactables.forEach((el) => {
 
 /*------------------------------------------------------  NAVIGATION BAR  ----------------------------------------------------*/
 
-/*------------------------------------------------------  NAVIGATION BAR  ----------------------------------------------------*/
-
 document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
