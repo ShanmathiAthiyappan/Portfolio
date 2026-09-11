@@ -1,0 +1,882 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Courgette&family=Creepster&family=Dancing+Script:wght@400..700&family=Gorditas:wght@400;700&family=Great+Vibes&family=Kings&family=Lavishly+Yours&family=Merienda:wght@300..900&family=Metal+Mania&family=Neonderthaw&family=Permanent+Marker&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Reenie+Beanie&family=Rochester&family=Rock+Salt&family=Satisfy&family=Tangerine:wght@400;700&family=Yatra+One&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+/*----------------------------------------------BODY-----------------------------------------------------------  */
+*{
+    user-select: none;
+    scroll-behavior: smooth;      
+    box-sizing: border-box;
+}
+
+/* Reset and body styling */
+body {
+    margin: 0;
+    padding: 0;
+    background: #080808;
+    color: #e5e5e5;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+}
+
+/*----------------------------------------------CURSOR EFFECT-----------------------------------------------------------  */
+
+#cursorEffect {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid rgba(255, 215, 0, 0.7);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+}
+
+#cursorDot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: #FFD700;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    box-shadow: 0 0 10px #FFD700;
+}
+
+#cursorEffect.cursor-hover {
+    width: 50px;
+    height: 50px;
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.08);
+}
+
+  /* Trigger the pulse animation */
+  #cursorEffect.animate {
+    animation: pulse 0.3s ease-out;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.3);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+
+  /*----------------------------------------------BACKGROUND-----------------------------------------------------------  */
+
+/* Background for floating dots */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none; /* Prevent background from blocking clicks */
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 20%, rgba(218, 165, 32, 0.07), transparent 60%);
+}
+
+/*----------------------------------------------DOTS-----------------------------------------------------------  */
+
+/* Style for the animated dots */
+.dot {
+    position: absolute;
+    background: radial-gradient(circle, #fff, #FFD700);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.85);
+    opacity: 0.75;
+}
+
+/*----------------------------------------------NAV BAR-----------------------------------------------------------  */
+
+/* Centered navbar */
+.navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(18, 18, 18, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 40px;
+    padding: 8px 24px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Navbar links - visible by default */
+.nav-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    padding: 6px 14px;
+    margin: 0;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* Regular nav links hover effect */
+.nav-links a:hover {
+    color: #FFD700;
+}
+
+.nav-links a:active {
+    color: #ff6600; 
+    font-weight: bold;
+    border-bottom: 2px solid #ff6600;
+    transition: all 0.3s ease-in-out; /* Smooth effect */
+  }
+
+/* Download button styling */
+.download-button {
+    display: inline-flex;
+    background-color: transparent;
+    border: 1.5px solid #FFD700 !important;
+    border-radius: 30px;
+    font-weight: 600;
+    color: #FFD700 !important;
+    transition: all 0.3s ease;
+}
+
+/* Download button hover effect */
+.download-button:hover {
+    background-color: #FFD700 !important;
+    color: #000 !important;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.5);
+}
+
+/* Menu toggle icon - hidden by default */
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    color: #FFD700;
+    cursor: pointer;
+    padding: 6px 12px;
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    z-index: 120;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 8px;
+}
+
+/*----------------------------------------------HOME PAGE-----------------------------------------------------------  */
+
+/* Main layout container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 160px;
+    margin-bottom: 80px;
+    width: 90%;
+    max-width: 1100px;
+}
+
+/* Circle container */
+.circle-container {
+    flex-shrink: 0;
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    position: relative;
+    padding: 6px;
+    background: linear-gradient(135deg, #FFD700, #ff8c00, #FFD700);
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: floatProfile 6s ease-in-out infinite;
+}
+
+@keyframes floatProfile {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.circle-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #000;
+}
+
+/* Content section */
+.content {
+    max-width: 600px;
+    text-align: center;
+}
+
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 20px;
+    color: #FFD700;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-dot {
+    font-size: 8px;
+    animation: blinkStatus 1.5s infinite;
+}
+
+@keyframes blinkStatus {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Name heading */
+#name {
+    color: white;
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 1.15;
+    margin-bottom: 8px;
+}
+
+.highlight-name {
+    background: linear-gradient(90deg, #ffe082, #ffd700, #ffa000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+#role {
+    color: #d1d5db;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+}
+
+.hero-tagline {
+    color: #9ca3af;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Icon container */
+.icon-container {
+    display: flex;
+    gap: 16px;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.icon-container a {
+    color: #f3f4f6;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.icon-container a:hover {
+    transform: translateY(-4px);
+    border-color: #FFD700;
+    color: #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    background: rgba(255, 215, 0, 0.1);
+}
+
+/*----------------------------------------------ABOUT SESSION-----------------------------------------------------------  */
+
+.about {
+    color: #e5e5e5;
+    text-align: left;
+    padding: 30px 20px;
+    margin-top: 40px;
+    max-width: 900px;
+    width: 90%;
+    line-height: 1.7;
+}
+
+.abt{
+    font-family: "Yatra One", system-ui, serif;
+    color: white;
+    font-size: 52px;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.abt::after, .expert::after, .workhead::after, .connect::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #FFD700;
+    margin: 12px auto 0 auto;
+    border-radius: 3px;
+    box-shadow: 0 0 10px #FFD700;
+}
+
+.about-summary {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 28px;
+    font-size: 1.05rem;
+    color: #d1d5db;
+    margin-bottom: 40px;
+}
+
+/*----------------------------------------------EDUACTION-----------------------------------------------------------  */
+
+.education{
+    text-align: left;
+    margin-top: 20px;
+} 
+
+.educate{
+    font-family: "Yatra One", system-ui, serif;
+    font-size: 38px;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.qualification{
+    font-size: 1.35rem;
+    color: #FFD700;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.clg, .skl{
+    color: #9ca3af;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+/* EXPERIENCE SECTION STYLING */
+.experience-section {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px 0 60px 0;
+}
+
+.exp-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.exp-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 14px;
+    padding: 28px;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exp-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.15);
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.exp-role {
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+}
+
+.exp-duration {
+    background: rgba(255, 215, 0, 0.15);
+    color: #FFD700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.exp-company {
+    color: #d1d5db;
+    font-size: 1.05rem;
+    margin: 8px 0 16px 0;
+    font-weight: 500;
+}
+
+.exp-points {
+    margin: 0;
+    padding-left: 20px;
+    color: #9ca3af;
+    line-height: 1.7;
+}
+
+.exp-points li {
+    margin-bottom: 6px;
+}
+
+/*----------------------------------------------SKILLS & TOOLS-----------------------------------------------------------  */
+
+.expertise{
+    width: 90%;
+    max-width: 900px;
+    margin-bottom: 80px;
+}
+
+.expert{
+    font-size: 52px;
+    font-family: "Yatra One", system-ui;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.skills, .tools{   
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 35px;
+}
+
+.skillhead, .toolhead{
+    font-size: 1.4rem;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.03em;
+}
+
+.skill, .tool{
+    color: #e5e5e5;
+    padding: 10px 20px;
+    margin: 0;
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transform: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+}
+
+.skill:hover, .tool:hover{
+    cursor: pointer;
+    transform: translateY(-4px);
+    background: rgba(255, 215, 0, 0.08);
+    border-color: #FFD700;
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.25);
+}
+
+/*----------------------------------------------PROJECTS-----------------------------------------------------------  */
+
+.works{
+    color: white;
+    width: 90%;
+    max-width: 1100px;
+}
+
+.workhead{
+    font-size: 52px;
+    font-family: "Yatra One", system-ui;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.projects{
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.project{
+    width: 320px;
+    min-height: 420px;
+    margin: 0;
+    padding: 24px;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
+}
+
+.project-tag {
+    align-self: flex-start;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255, 215, 0, 0.15);
+    color: #FFD700;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.project a{
+    text-decoration: none ;
+    color: white;
+}
+
+.title{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+    transition: color 0.3s ease;
+} 
+
+.title:hover {
+    color: #FFD700;
+    animation: none;
+}
+
+.project hr{
+    border: none;
+    border-top: 2px solid rgba(255, 215, 0, 0.3);
+    margin: 10px 0 16px 0;
+    padding: 0;
+}
+
+.explain{
+    margin-bottom: 20px;
+    color: #a1a1aa;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.project-tech-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.project-tech-pills span {
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #d4d4d8;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.project-date {
+    color: #71717a;
+    font-size: 0.8rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.project.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project:hover{
+    transform: translateY(-8px);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+/*----------------------------------------------CONTACT-----------------------------------------------------------  */
+
+.contact{
+    text-align: center;
+    margin-top: 40px;
+}
+
+.connect{
+    font-size: 52px;
+    color: white;
+    font-family: "Yatra One", system-ui;
+    margin-bottom: 10px;
+}
+
+.connect-sub {
+    color: #a1a1aa;
+    font-size: 1.05rem;
+    margin-bottom: 25px;
+}
+
+.mail, .location{
+    color: #e5e5e5;
+    font-size: 1.3rem;
+    padding: 6px 0px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+}
+
+.mail a{
+    text-decoration: none;
+    color: #e5e5e5;
+    transition: color 0.3s;
+}
+
+.mail a:hover {
+    color: #FFD700;
+}
+
+.contact .icon-container{
+    align-items: center;
+}
+
+/*-----------------------------------------  Responsive behavior (MEDIA QUERY)  ---------------------------------------------*/
+
+@media screen and (max-width: 768px) {
+
+    /* Keep navbar transparent and non-blocking */
+    .navbar {        
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        padding: 0;
+        pointer-events: none;
+    }
+
+    .menu-toggle, .nav-links {
+        pointer-events: auto;
+    }
+
+    /* Menu toggle button */
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+        color: #FFD700;
+        cursor: pointer;
+        position: fixed;
+        top: 15px;
+        left: 20px;
+        z-index: 1001;
+        background: rgba(18, 18, 18, 0.85);
+        border: 1px solid rgba(255, 215, 0, 0.35);
+        border-radius: 12px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Dropdown menu positioned cleanly under the toggle */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        background: rgba(15, 15, 15, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        position: fixed;
+        top: 70px;
+        left: 20px;
+        right: auto;
+        width: 250px;
+        padding: 14px 12px;
+        border: 1px solid rgba(255, 215, 0, 0.35);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85), 0 0 15px rgba(255, 215, 0, 0.1);
+        border-radius: 16px;
+        gap: 6px;
+        z-index: 1000;
+        animation: menuFadeIn 0.25s ease-out;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    @keyframes menuFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Professional link item styling */
+    .nav-links a {
+        padding: 10px 16px;
+        width: 100%;
+        text-align: left;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #e5e5e5;
+        transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:active {
+        background: rgba(255, 215, 0, 0.08);
+        color: #FFD700;
+        padding-left: 20px;
+        border-bottom: none;
+    }
+
+    /* Resume action button */
+    .nav-links .download-button {
+        margin-top: 8px;
+        text-align: center;
+        justify-content: center;
+        padding: 10px 16px;
+        background: rgba(255, 215, 0, 0.12) !important;
+        border: 1.5px solid #FFD700 !important;
+        border-radius: 25px;
+        color: #FFD700 !important;
+        font-weight: 600;
+    }
+
+    .nav-links .download-button:hover,
+    .nav-links .download-button:active {
+        background: #FFD700 !important;
+        color: #000 !important;
+        padding-left: 16px;
+    }
+
+    /* Layout adjustments for mobile */
+    .container {
+        margin-top: 100px;
+        gap: 30px;
+    }
+
+    #name {
+        font-size: 2.2rem;
+    }
+
+    #role {
+        font-size: 1.3rem;
+    }
+
+    .abt, .expert, .workhead, .connect {
+        font-size: 38px;
+    }
+
+    .expertise {
+        width: 95%;
+    }
+
+    .projects {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project {
+        width: 100%;
+        max-width: 340px;
+        min-height: auto;
+    }
+
+    .mail, .location {
+        font-size: 1rem;
+    }
+
+    #cursorEffect, #cursorDot {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 70px;
+        margin-top: 200px;
+    }
+
+    .content {
+        text-align: left;
+    }
+
+    .icon-container {
+        justify-content: flex-start;
+    }
+
+    #name {
+        font-size: 3.5rem;
+    }
+
+    #role {
+        font-size: 2rem;
+    }
+}
+
+/* git add .
+git commit -m "CSS File updated"
+git push */
